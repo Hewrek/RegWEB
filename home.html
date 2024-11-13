@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegApp</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #F7CAC9; /* Rosa pálido */
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Contenedor principal para intro y carrusel */
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+            flex-wrap: wrap; /* Asegura que los elementos se adapten a pantallas pequeñas */
+        }
+
+        /* Sección de Introducción */
+        .intro-section {
+            background: linear-gradient(135deg, #FF6F61, #6B5B95); /* Gradiente de rojo suave a púrpura oscuro */
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1 1 45%; /* Hace que la sección ocupe el 45% del contenedor */
+            margin-right: 20px;
+        }
+
+        .intro-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+        }
+
+        /* Sección del Carrusel */
+        .carousel-container {
+            position: relative;
+            width: 50%;
+            max-width: 300px; /* Limita el ancho del carrusel */
+            height: 2%;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 20px;
+            flex: 1 1 45%; /* Hace que el carrusel ocupe el 45% del contenedor */
+        }
+
+        .carousel-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;  /* Inicialmente ocultamos todas las imágenes */
+        }
+
+        .carousel-images img.active {
+            display: block; /* Solo la imagen activa se muestra */
+        }
+
+        /* Controles del Carrusel */
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            font-size: 30px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .carousel-control-prev {
+            left: 10px;
+        }
+
+        .carousel-control-next {
+            right: 10px;
+        }
+
+        /* Sección de Descarga */
+        .download-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #6B5B95, #FF6F61); /* Gradiente de púrpura oscuro a rojo suave */
+            border-radius: 20px;
+            margin: 20px;
+        }
+
+        .download-section h2 {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #FF6F61, #88B04B); /* Gradiente de rojo suave a verde suave */
+            color: #fff;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(135deg, #88B04B, #FF6F61); /* Invertir el gradiente al pasar el ratón */
+        }
+
+        /* Estilos para el Modal (popup) */
+        .modal {
+            display: none; /* Inicialmente oculto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; /* Centra el contenido */
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px; /* Espacio entre el QR y el botón */
+        }
+
+        .close-btn {
+            background-color: #FF6F61;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background-color: #6B5B95;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor Principal -->
+    <div class="main-container">
+        <!-- Sección de Introducción -->
+        <section class="intro-section">
+            <h1>¡Bienvenido a RegistrAPP!</h1>
+            <hr>
+            <br>
+            <p>La solución innovadora y revolucionaria que transforma el proceso de registro de asistencia, haciendo que sea más rápido, preciso y eficiente. ¡Ideal tanto para alumnos como para profesores! <strong>RegistrAPP</strong> es la herramienta perfecta para simplificar la asistencia en clases. </p>
+            <br>
+            <p>Olvídate de la confusión por mascarillas, olvido de registro manual y la falta de tiempo del profesor. <strong>RegistrAPP</strong> llega para optimizar la experiencia educativa, promoviendo mayor responsabilidad entre los estudiantes y un control eficiente por parte de los docentes. ¡Es hora de dar el siguiente paso en la gestión de la asistencia en tu institución! ¡Únete a nuestra comunidad de usuarios y empieza a transformar la manera de registrar la asistencia de tus clases!</p>
+        </section>
+
+        <!-- Sección del Carrusel -->
+        <section class="carousel-container">
+            <div class="carousel-images">
+                <img src="/img/home.png" id="image1" alt="Imagen 1">
+                <img src="/img/registro.png" id="image2" alt="Imagen 2">
+                <img src="/img/alumno.png" id="image3" alt="Imagen 3">
+                <img src="/img/profes.png" id="image4" alt="Imagen 4">
+            </div>
+            <button class="carousel-control carousel-control-prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="carousel-control carousel-control-next" onclick="moveSlide(1)">&#10095;</button>
+        </section>
+    </div>
+
+    <!-- Sección de Descarga -->
+    <section class="download-section">
+        <h2>¡Descarga la App Ahora!</h2>
+        <button class="download-btn" onclick="openModal()">Descargar</button>
+    </section>
+
+    <!-- Modal de QR -->
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <h3>Escanea el código QR para descargar la app</h3>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://drive.google.com/file/d/1wuVCze_jtjm3CMcfByf4ZLrLh6cot7l8/view?usp=drive_link&size=200x200" alt="QR Code" class="qr-code">
+            <button class="download-btn" onclick="window.location.href='https://drive.google.com/file/d/1wuVCze_jtjm3CMcfByf4ZLrLh6cot7l8/view?usp=drive_link'">Descargar desde aquí</button>
+            <br><br>
+            <button class="close-btn" onclick="closeModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1; 
+        const totalSlides = 4;
+
+        function showSlide() {
+            for (let i = 1; i <= totalSlides; i++) {
+                document.getElementById('image' + i).classList.remove('active');
+            }
+
+            document.getElementById('image' + currentSlide).classList.add('active');
+        }
+
+        function moveSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide > totalSlides) { currentSlide = 1; }
+            if (currentSlide < 1) { currentSlide = totalSlides; }
+            showSlide();
+        }
+
+        showSlide();
+    </script>
+    <script>
+        function openModal() {
+            document.getElementById('qrModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('qrModal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
